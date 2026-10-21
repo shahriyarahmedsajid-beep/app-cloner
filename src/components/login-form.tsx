@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ArrowRight, Loader2, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { plans } from "@/lib/content";
+import { USER_KEY } from "@/lib/generation";
 
 export function LoginForm({ planId }: { planId?: string }) {
   const router = useRouter();
@@ -16,7 +17,7 @@ export function LoginForm({ planId }: { planId?: string }) {
     setLoading(true);
     try {
       window.localStorage.setItem(
-        "zupona:user",
+        USER_KEY,
         JSON.stringify({ email: email.trim() || "guest@zupona.ai" }),
       );
     } catch {

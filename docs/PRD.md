@@ -896,6 +896,7 @@ Credit prices here are illustrative. Production pricing must be calibrated again
 - Mock generation API with a typed in-memory job store and polling.
 - Deterministic local SVG rendering based on job ID and prompt.
 - Local library persistence, download, remix, delete and reset.
+- Local brand kit editor with palette, type, tone, guardrails and studio prompt handoff.
 - Pricing page with monthly/annual toggle and comparison table.
 - Demo auth and guest flow.
 - Research and PRD docs plus a public research page.
@@ -907,7 +908,7 @@ Credit prices here are illustrative. Production pricing must be calibrated again
 - Authentication and accounts.
 - Credits (localStorage, reset available).
 - Billing (no payments).
-- Uploads, references, brand kits, character memory.
+- Uploads, references, account-scoped brand kits, character memory.
 - Moderation and review.
 - MP4/video rendering (demo produces an SVG still with video metadata).
 - Email, analytics, admin and marketplace payouts.

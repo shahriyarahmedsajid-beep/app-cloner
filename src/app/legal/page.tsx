@@ -173,6 +173,8 @@ export default function LegalPage() {
                 {[
                   ["zupona:credits", "Your remaining demo credits"],
                   ["zupona:library", "Saved render metadata and SVG data URLs"],
+                  ["zupona:brand", "Your local brand kit and guardrails"],
+                  ["zupona:user", "The email used for the demo sign-in"],
                 ].map(([key, body]) => (
                   <div
                     key={key}
@@ -188,9 +190,9 @@ export default function LegalPage() {
                 ))}
               </div>
               <p>
-                You can clear both at any time from your browser settings or by
-                using the reset control in the studio. Clearing them removes your
-                demo library and restores the starting credit balance.
+                You can clear these at any time from your browser settings or by
+                using the reset controls in the studio and library. Clearing them
+                removes your demo library, brand kit and sign-in state.
               </p>
               <p>
                 The mock generation API keeps jobs in server memory only. Jobs are

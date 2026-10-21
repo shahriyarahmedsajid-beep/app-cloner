@@ -140,6 +140,7 @@ const built = [
   "Mock generation API and job polling",
   "Locally rendered deterministic SVG results",
   "Local library with remix and download",
+  "Brand kit editor with prompt directive handoff",
   "Pricing, credit calculator examples and FAQ",
   "Demo auth, research page and PRD docs",
 ];
@@ -148,7 +149,7 @@ const simulated = [
   "External AI model calls",
   "Authentication and accounts",
   "Server-side credits and billing",
-  "Uploads, brand kits and character memory",
+  "Uploads, account-scoped brand kits and character memory",
   "Moderation, review and admin",
   "MP4 video rendering",
   "Analytics and error monitoring",

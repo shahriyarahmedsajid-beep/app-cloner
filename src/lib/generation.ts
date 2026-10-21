@@ -33,3 +33,4 @@ export type SavedGeneration = {
 
 export const CREDITS_KEY = "zupona:credits";
 export const LIBRARY_KEY = "zupona:library";
+export const USER_KEY = "zupona:user";

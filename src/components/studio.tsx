@@ -17,6 +17,7 @@ import {
   Loader2,
   Lock,
   Music2,
+  Palette,
   Plus,
   RefreshCw,
   Sparkles,
@@ -25,6 +26,7 @@ import {
 } from "lucide-react";
 import { ArtTile } from "@/components/art-tile";
 import { Button } from "@/components/ui/button";
+import { brandPrompt, loadBrandKit, type BrandKit } from "@/lib/brand";
 import {
   CREDITS_KEY,
   LIBRARY_KEY,
@@ -91,6 +93,8 @@ export function Studio({
   const [hydrated, setHydrated] = useState(false);
   const [job, setJob] = useState<PublicJob | null>(null);
   const [library, setLibrary] = useState<SavedGeneration[]>([]);
+  const [brand, setBrand] = useState<BrandKit | null>(null);
+  const [useBrand, setUseBrand] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -123,6 +127,9 @@ export function Studio({
           setLibrary(parsed.slice(0, 24) as SavedGeneration[]);
         }
       }
+
+      const storedBrand = loadBrandKit();
+      if (storedBrand) setBrand(storedBrand);
     } catch {
       // Local storage can be unavailable in private browsing.
     }
@@ -275,12 +282,18 @@ export function Studio({
     setError(null);
     setNotice(null);
 
+    const directive = brand && useBrand ? brandPrompt(brand) : "";
+    const finalPrompt =
+      directive && !trimmed.includes(directive)
+        ? `${trimmed} ${directive}`.slice(0, 1200).trim()
+        : trimmed;
+
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          prompt: trimmed,
+          prompt: finalPrompt,
           modelId: selectedModel.id,
           aspect,
           duration,
@@ -586,6 +599,68 @@ export function Studio({
                   </span>
                 </div>
               </div>
+
+              {brand ? (
+                <div className="rounded-xl border border-white/[0.07] bg-black/20 p-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex min-w-0 items-center gap-2.5">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-lime/10 text-lime">
+                        <Palette className="h-3.5 w-3.5" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="truncate text-[10.5px] font-medium text-white/65">
+                          Brand kit · {brand.name || "Untitled"}
+                        </p>
+                        <p className="text-[9px] text-white/30">
+                          {useBrand
+                            ? "Palette, tone and continuity appended to this prompt"
+                            : "Not applied to this render"}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      role="switch"
+                      aria-checked={useBrand}
+                      aria-label={`Apply ${brand.name || "brand"} kit to this prompt`}
+                      onClick={() => setUseBrand((value) => !value)}
+                      className={cn(
+                        "relative h-5 w-9 shrink-0 rounded-full border transition-colors",
+                        useBrand
+                          ? "border-lime/40 bg-lime/30"
+                          : "border-white/10 bg-white/[0.06]",
+                      )}
+                    >
+                      <span
+                        className={cn(
+                          "absolute top-1/2 h-3.5 w-3.5 -translate-y-1/2 rounded-full transition-all",
+                          useBrand
+                            ? "left-[19px] bg-lime"
+                            : "left-[3px] bg-white/40",
+                        )}
+                      />
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  href="/brand"
+                  className="flex items-center justify-between gap-3 rounded-xl border border-dashed border-white/[0.1] bg-white/[0.015] px-3 py-2.5 transition-colors hover:border-white/20 hover:bg-white/[0.03]"
+                >
+                  <span className="flex items-center gap-2.5">
+                    <Palette className="h-3.5 w-3.5 text-lime/60" />
+                    <span>
+                      <span className="block text-[10.5px] font-medium text-white/55">
+                        Set up a brand kit
+                      </span>
+                      <span className="block text-[9px] text-white/25">
+                        Palette, tone and continuity for every render
+                      </span>
+                    </span>
+                  </span>
+                  <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-white/25" />
+                </Link>
+              )}
 
               <div>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.13em] text-white/35">
