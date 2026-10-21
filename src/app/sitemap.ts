@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
   const routes = [
     { path: "/", priority: 1 },
+    { path: "/director", priority: 0.9 },
     { path: "/store", priority: 0.9 },
     { path: "/studio", priority: 0.8 },
     { path: "/brand", priority: 0.7 },

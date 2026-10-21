@@ -10,7 +10,8 @@ import { USER_KEY } from "@/lib/generation";
 import { cn } from "@/lib/utils";
 
 const nav = [
-  { href: "/store", label: "Storefront", dot: true },
+  { href: "/director", label: "Director", dot: true },
+  { href: "/store", label: "Storefront" },
   { href: "/studio", label: "Studio" },
   { href: "/library", label: "Library" },
   { href: "/pricing", label: "Pricing" },
@@ -115,8 +116,8 @@ export function SiteHeader() {
               Sign in
             </Link>
           )}
-          <ButtonLink href="/studio" size="sm" className="group">
-            Open studio
+          <ButtonLink href="/director" size="sm" className="group">
+            Open Director
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </ButtonLink>
         </div>
@@ -176,11 +177,11 @@ export function SiteHeader() {
             )}
           </nav>
           <ButtonLink
-            href="/studio"
+            href="/director"
             onClick={() => setOpen(false)}
             className="mt-4 w-full"
           >
-            Open the studio
+            Open Director
             <ArrowUpRight className="h-4 w-4" />
           </ButtonLink>
         </div>

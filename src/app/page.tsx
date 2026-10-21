@@ -20,9 +20,15 @@ import { SectionHeading } from "@/components/section-heading";
 import { StoreAppCard } from "@/components/store-app-card";
 import { ButtonLink } from "@/components/ui/button";
 import { faqs, features, gallery, personas } from "@/lib/content";
+import { compileCampaign, DEFAULT_DIRECTOR_BRIEF } from "@/lib/director";
 import { modelMarquee } from "@/lib/models";
 import { featuredApps, storeApps } from "@/lib/store";
 import { cn } from "@/lib/utils";
+
+const directorPreview = compileCampaign({
+  ...DEFAULT_DIRECTOR_BRIEF,
+  budget: 60,
+});
 
 const principles = [
   {

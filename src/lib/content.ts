@@ -278,6 +278,7 @@ export const footerColumns = [
   {
     title: "Product",
     links: [
+      { label: "Director", href: "/director" },
       { label: "Storefront", href: "/store" },
       { label: "Studio", href: "/studio" },
       { label: "Library", href: "/library" },
