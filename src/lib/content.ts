@@ -297,8 +297,9 @@ export const footerColumns = [
     title: "Resources",
     links: [
       { label: "Creator program", href: "/store#creators" },
+      { label: "Brand kit", href: "/brand" },
       { label: "Model roster", href: "/#models" },
-      { label: "Status", href: "/status" },
+      { label: "Status", href: "/research#roadmap" },
       { label: "Changelog", href: "/research#roadmap" },
     ],
   },
