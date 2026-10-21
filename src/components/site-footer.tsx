@@ -60,10 +60,10 @@ export function SiteFooter() {
             <Link href="/research" className="transition-colors hover:text-white/60">
               Research
             </Link>
-            <Link href="/pricing" className="transition-colors hover:text-white/60">
+            <Link href="/legal#terms" className="transition-colors hover:text-white/60">
               Terms
             </Link>
-            <Link href="/pricing" className="transition-colors hover:text-white/60">
+            <Link href="/legal#privacy" className="transition-colors hover:text-white/60">
               Privacy
             </Link>
             <span className="inline-flex items-center gap-1.5">

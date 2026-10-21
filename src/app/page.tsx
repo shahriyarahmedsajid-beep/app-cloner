@@ -19,7 +19,7 @@ import { PricingPlans } from "@/components/pricing-plans";
 import { SectionHeading } from "@/components/section-heading";
 import { StoreAppCard } from "@/components/store-app-card";
 import { ButtonLink } from "@/components/ui/button";
-import { faqs, features, gallery, personas, plans } from "@/lib/content";
+import { faqs, features, gallery, personas } from "@/lib/content";
 import { modelMarquee } from "@/lib/models";
 import { featuredApps, storeApps } from "@/lib/store";
 import { cn } from "@/lib/utils";
@@ -423,7 +423,15 @@ export default function HomePage() {
             {gallery.map((item) => (
               <Link
                 key={item.id}
-                href={`/studio?prompt=${encodeURIComponent(item.prompt)}`}
+                href={`/studio?prompt=${encodeURIComponent(item.prompt)}&model=${encodeURIComponent(
+                  item.tag === "Canvas 2"
+                    ? "zupona-canvas-2"
+                    : item.tag === "Cinema"
+                      ? "zupona-cinema"
+                      : item.tag === "Vector"
+                        ? "zupona-vector"
+                        : "zupona-motion-3",
+                )}`}
                 className="group relative mb-3 block break-inside-avoid overflow-hidden rounded-[22px] border border-white/[0.08]"
               >
                 <ArtTile

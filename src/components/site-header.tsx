@@ -27,10 +27,6 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
   return (
     <header
       className={cn(
@@ -99,6 +95,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setOpen(false)}
                 className="flex items-center justify-between border-b border-white/[0.06] py-3.5 text-[15px] text-white/80"
               >
                 {item.label}
@@ -107,13 +104,18 @@ export function SiteHeader() {
             ))}
             <Link
               href="/login"
+              onClick={() => setOpen(false)}
               className="flex items-center justify-between py-3.5 text-[15px] text-white/80"
             >
               Sign in
               <ArrowUpRight className="h-4 w-4 text-white/30" />
             </Link>
           </nav>
-          <ButtonLink href="/studio" className="mt-4 w-full">
+          <ButtonLink
+            href="/studio"
+            onClick={() => setOpen(false)}
+            className="mt-4 w-full"
+          >
             Open the studio
             <ArrowUpRight className="h-4 w-4" />
           </ButtonLink>

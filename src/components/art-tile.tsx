@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type Palette = {
@@ -95,7 +96,7 @@ export function ArtTile({
 }: {
   variant?: number;
   className?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
   overlay?: boolean;
 }) {
   const index = ((variant % palettes.length) + palettes.length) % palettes.length;
